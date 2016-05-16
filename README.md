@@ -1,6 +1,7 @@
 # cordova-qdc-alipay
 支付宝APP支付cordova,ionic插件(Android版，IOS版)
 
+* 2016.05.16 升级到最新的SDK
 * 2015.07.02 IOS版支付宝集成
 * 2015.07.02 支付宝签名算法移至服务端
 * 2015.07.01 支付宝Android集成，初步完成
@@ -8,7 +9,7 @@
 # 1. Android客户端安装
 开发工程下执行以下命令导入本插件：
 
-	$ ionic plugin add https://github.com/mrwutong/cordova-qdc-alipay.git
+	$ ionic plugin add https://github.com/huangliop/cordova-qdc-alipay.git
 
 已安装插件查看：
 
@@ -39,8 +40,7 @@
 	# cb_success:调用成功回调方法
 	# cb_failure:调用失败回调方法
 	# json: {
-	    pay_info: 支付信息
-	    sign: 密钥
+	    pay_info: 支付信息 
 	  }
 ```
 
