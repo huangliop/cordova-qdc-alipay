@@ -1,0 +1,22 @@
+{
+  "name": "com.qdc.plugins.alipay",
+  "version": "1.0.2",
+  "description": "Cordova Alipay", 
+  "cordova": {
+    "id": "com.qdc.plugins.alipay",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "cordova"
+  ],  
+  "engines": {
+    "cordovaDependencies": {
+      "5.0.0": {
+        "cordova": ">100"
+      }
+    }
+  }
+}
