@@ -77,19 +77,6 @@ public class Alipay extends CordovaPlugin {
 					// 构造PayTask 对象
 					PayTask alipay = new PayTask(cordova.getActivity());
 
-					// 查询终端设备是否存在支付宝认证账户
-					boolean isExist = alipay.checkAccountIfExist();
-					if (!isExist) {
-						LOG.e(LOG_TAG, "alipay account is not exists",
-								new IllegalStateException());
-						PluginResult result = new PluginResult(
-								PluginResult.Status.ERROR,
-								"alipay account is not exists");
-						result.setKeepCallback(true);
-						cbContext.sendPluginResult(result);
-						return;
-					}
-
 					// 调用支付接口
 					String resultMsg = alipay.pay(payInfo);
 					LOG.i(LOG_TAG, ">>>>>>>>>>支付回调通知>>>>>>>>>>>");
@@ -127,42 +114,4 @@ public class Alipay extends CordovaPlugin {
 
 		return true;
 	}
-
-	/**
-	 * 判断签名是否一致
-	 * 
-	 * @param orign
-	 *            原始值
-	 * @param sign
-	 *            签名
-	 * @return 一致:true
-	 */
-	private boolean isSameSignature(String orign, String sign) {
-		char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-				'A', 'B', 'C', 'D', 'E', 'F' };
-		try {
-			byte[] btInput = orign.getBytes("UTF-8");
-			// 获得MD5摘要算法的 MessageDigest 对象
-			MessageDigest mdInst = MessageDigest.getInstance("MD5");
-			// 使用指定的字节更新摘要
-			mdInst.update(btInput);
-			// 获得密文
-			byte[] md = mdInst.digest();
-			// 把密文转换成十六进制的字符串形式
-			int j = md.length;
-			char str[] = new char[j * 2];
-			int k = 0;
-			for (int i = 0; i < j; i++) {
-				byte byte0 = md[i];
-				str[k++] = hexDigits[byte0 >>> 4 & 0xf];
-				str[k++] = hexDigits[byte0 & 0xf];
-			}
-
-			return new String(str).equals(sign);
-		} catch (Exception e) {
-			LOG.e(LOG_TAG, e.getMessage(), e);
-			return false;
-		}
-	}
-
 }
