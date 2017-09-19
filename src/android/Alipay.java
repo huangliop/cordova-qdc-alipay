@@ -78,7 +78,7 @@ public class Alipay extends CordovaPlugin {
 					PayTask alipay = new PayTask(cordova.getActivity());
 
 					// 调用支付接口
-					String resultMsg = alipay.pay(payInfo);
+					String resultMsg = alipay.pay(payInfo,true);
 					LOG.i(LOG_TAG, ">>>>>>>>>>支付回调通知>>>>>>>>>>>");
 					LOG.i(LOG_TAG, resultMsg);
 					LOG.i(LOG_TAG, "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
