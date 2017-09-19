@@ -69,27 +69,6 @@ public class Alipay extends CordovaPlugin {
 				return ret;
 			}
 
-			final String sign = jsonObj.getString("sign");
-			if (sign == null || "".equals(sign)) {
-				LOG.e(LOG_TAG, "sign is empty", new NullPointerException());
-				ret = false;
-				PluginResult result = new PluginResult(
-						PluginResult.Status.ERROR, "sign is empty");
-				result.setKeepCallback(true);
-				cbContext.sendPluginResult(result);
-				return ret;
-			}
-
-			if (!isSameSignature(payInfo, sign)) {
-				LOG.e(LOG_TAG, "pay_info sign failure.",
-						new IllegalStateException());
-				ret = false;
-				PluginResult result = new PluginResult(
-						PluginResult.Status.ERROR, "pay_info sign failure.");
-				result.setKeepCallback(true);
-				cbContext.sendPluginResult(result);
-				return ret;
-			}
 
 			Runnable payRunnable = new Runnable() {
 
