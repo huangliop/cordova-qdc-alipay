@@ -35,11 +35,11 @@
 * 调用plugin的JS方法【alipay.payment】进行支付
 
 ```js
-	**alipay.payment(json, cb_success, cb_failure);**
+	alipay.payment(json, cb_success, cb_failure);
 	# 参数说明：格式为JSON格式
 	# cb_success:调用成功回调方法
 	# cb_failure:调用失败回调方法
-	# json: {
+	 json: {
 	    pay_info: 支付信息 
 	  }
 ```
