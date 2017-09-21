@@ -1,6 +1,7 @@
 # cordova-qdc-alipay
 支付宝APP支付cordova,ionic插件(Android版，IOS版)
 
+* 2016.09.21 升级到最新的SDK,并对android 的payV2接口支持
 * 2016.05.16 升级到最新的SDK
 * 2015.07.02 IOS版支付宝集成
 * 2015.07.02 支付宝签名算法移至服务端
@@ -36,3 +37,13 @@
 	  }
 ```
 
+```js
+	#对anroid环境下payV2的支持，如果是ios调用这个接口，依然是执行alipay.payment方法
+	alipay.payV2(json, cb_success, cb_failure);
+	# 参数说明：格式为JSON格式
+	# cb_success:调用成功回调方法
+	# cb_failure:调用失败回调方法
+	 json: {
+	    pay_info: 支付信息 
+	  }
+```
