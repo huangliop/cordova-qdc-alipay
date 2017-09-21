@@ -51,20 +51,6 @@
              return ;
          }
          payInfo = [params objectForKey:@"pay_info"];
-        
-         if (![params objectForKey:@"sign"])
-         {
-             [self failWithCallbackID:self.currentCallbackId withMessage:@"sign参数错误"];
-             return ;
-         }
-         sign = [params objectForKey:@"sign"];
-        
-        
-         if (![self isSameSignature:payInfo withSign:sign])
-         {
-             [self failWithCallbackID:self.currentCallbackId withMessage:@"签名校验错误"];
-             return ;
-         }
 
         //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
         CDVViewController *viewController = (CDVViewController *)self.viewController;
@@ -81,26 +67,6 @@
     }];
 }
 
--(BOOL)isSameSignature:(NSString *)orign withSign:(NSString *) sign
-{
-    const char* cStr = [orign UTF8String];
-    unsigned char result[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(cStr, strlen(cStr), result);
-    
-    static const char HexEncodeChars[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
-    char *resultData = malloc(CC_MD5_DIGEST_LENGTH * 2 + 1);
-    
-    for (uint index = 0; index < CC_MD5_DIGEST_LENGTH; index++) {
-        resultData[index * 2] = HexEncodeChars[(result[index] >> 4)];
-        resultData[index * 2 + 1] = HexEncodeChars[(result[index] % 0x10)];
-    }
-    resultData[CC_MD5_DIGEST_LENGTH * 2] = 0;
-    
-    NSString *orignSign = [NSString stringWithCString:resultData encoding:NSASCIIStringEncoding];
-    free(resultData);
-
-    return [orignSign isEqualToString:sign];
-}
 
 - (NSString *) jsonStringWithDictionary:(NSDictionary *) dictionary {
     
