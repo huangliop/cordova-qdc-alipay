@@ -9,25 +9,17 @@
 # 1. Android客户端安装
 开发工程下执行以下命令导入本插件：
 
-	$ ionic plugin add https://github.com/huangliop/cordova-qdc-alipay.git
+	$ cordova plugin add https://github.com/huangliop/cordova-qdc-alipay.git  --variable IOS_URL=[自己定义一个Url，用于ios支付成功后回掉app，例如：'myappalipay']
 
 已安装插件查看：
 
-	$ionic plugin list
+	$cordova plugin list
 
 
 执行以下命令删本插件：
 
 	# 【com.qdc.plugins.alipay】是插件ID，不是插件文件夹名
-	$ionic plugin rm com.qdc.plugins.alipay
-
-## 1.1 Android开发环境导入--Eclipse
-导入路径：开发工程->platform->android
-
-## 1.2 IOS开发环境导入--Xcode
-导入路径：开发工程->platform->ios
-
-确认没有编译错误。
+	$cordova plugin rm com.qdc.plugins.alipay
 
 ## 1.3 JS调用说明
 
