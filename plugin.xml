@@ -2,9 +2,12 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
   id="com.qdc.plugins.alipay"
-  version="1.1.0">
+  version="1.0.1">
   <name>Alipay</name>
 
+  <js-module src="www/alipay.js" name="alipay">
+    <clobbers target="alipay" />
+  </js-module>
 <preference name="IOS_URL" />
   <!-- android -->
   <platform name="android">
@@ -31,23 +34,36 @@
       </activity>
     </config-file>
 
-  <js-module src="www/android/alipay.js" name="alipay">
-    <clobbers target="alipay" />
-  </js-module>
     <source-file src="src/android/Alipay.java" target-dir="src/com/qdc/plugins/alipay" />
-    <source-file src="libs/android/alipaySdk-20170725.jar" target-dir="libs" />
+    <source-file src="libs/android/alipaySdk-20160427.jar" target-dir="libs" />
   </platform>
 
   <!-- ios -->
-  <platform name="ios">
+  <platform name="ios"> 
     <config-file target="config.xml" parent="/*">
       <feature name="Alipay">
         <param name="ios-package" value="CDVAlipay" />
         <param name="onload" value="true" />
       </feature>
-      <preference name="alipay" value="$IOS_URL"/>
+      <preference name="alipay" value="$IOS_URL"/> 
     </config-file>
-
+    <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+        <array>
+        <dict>
+          <key>CFBundleTypeRole</key>
+          <string>Editor</string>
+          <key>CFBundleURLIconFile</key>
+          <string>icon-50@2x</string>
+          <key>CFBundleURLName</key>
+          <string>alipay</string>
+          <key>CFBundleURLSchemes</key>
+          <array>
+            <string>$IOS_URL</string>
+          </array>
+        </dict>
+      </array>
+    </config-file>
+    
     <header-file src="src/ios/CDVAlipay.h" />
     <source-file src="src/ios/CDVAlipay.m" />
     
@@ -56,16 +72,10 @@
     
     <!-- afnetworking 依赖security.framework  -->
     <framework src="Security.framework"/>
-    <framework src="SystemConfiguration.framework"/> 
-	<framework src="CoreTelephony.framework"/>
-	<framework src="libc++.tbd"/> 
-	<framework src="libz.tbd"/>
-	
-    <framework src="libs/ios/AlipaySDK.framework" custom="true" />
+    <framework src="SystemConfiguration.framework"/>
+    <framework src="AssetsLibrary.framework"/>
     
-  <js-module src="www/ios/alipay.js" name="alipay">
-    <clobbers target="alipay" />
-  </js-module>
+    <framework src="libs/ios/AlipaySDK.framework" custom="true" />
   </platform>
 
 </plugin>
